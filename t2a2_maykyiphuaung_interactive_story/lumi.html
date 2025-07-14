@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=960, initial-scale=1.0" />
+  <title>Lumi the Fox: Safe Chat Quest</title>
+
+  <!-- Magical Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@500&family=EB+Garamond&family=Gwendolyn&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      background: #ffe6f0;
+      color: #333;
+      font-family: 'EB Garamond', serif;
+      width: 960px;
+      height: 540px;
+      overflow: hidden;
+    }
+
+    .container { padding: 30px; }
+    .scene { display: none; }
+    .active { display: block; }
+
+    h1, h2 {
+      font-family: 'Gwendolyn', cursive;
+      font-size: 2rem;
+    }
+
+    .intro p,
+    .ending p,
+    .question {
+      font-family: 'Cormorant Infant', serif;
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      min-height: 3em;
+    }
+
+    .option {
+      background: #fff0f5;
+      border: 2px dashed #ff99cc;
+      border-radius: 10px;
+      padding: 12px;
+      margin: 10px 0;
+      cursor: pointer;
+      transition: background 0.3s, opacity 0.6s ease;
+      font-family: 'EB Garamond', serif;
+      font-size: 1.1rem;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .option.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .feedback, .praise {
+      margin-top: 20px;
+      padding: 14px;
+      border-radius: 5px;
+      font-family: 'EB Garamond', serif;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+
+    .feedback.visible, .praise.visible {
+      opacity: 1;
+    }
+
+    .feedback {
+      background: #fff3cd;
+      border-left: 5px solid #f0ad4e;
+    }
+
+    .praise {
+      background: #e6ffe6;
+      border-left: 5px solid #28a745;
+    }
+
+    .button {
+      padding: 10px 20px;
+      background-color: #ffd6e6;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      font-family: 'EB Garamond', serif;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+
+    .button.visible {
+      opacity: 1;
+    }
+
+    .char {
+      width: 150px;
+      display: block;
+      margin: 10px auto;
+    }
+
+    .scene-img {
+  width: 300px;
+  max-width: 80%;
+  display: block;
+  margin: 0 auto 20px;
+  border-radius: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <!-- Intro -->
+    <div id="intro" class="scene active intro">
+  <h2>🌟 Welcome to Lumi the Fox: Safe Chat Quest 🌟</h2>
+  <img src="lumi1.jpg" alt="Lumi the Fox" class="char">
+  <p>You are Lumi, a curious fox exploring the magical Forest of the Internet. But not all creatures are kind...</p>
+  <p>Make safe choices, avoid online tricks, and protect your sparkle! ✨</p>
+  <button class="button visible" onclick="goToScene('scene1')">Start the Quest</button>
+</div>
+
+
+    <!-- Scene 1 -->
+    <div id="scene1" class="scene">
+  <img src="lumi-bad-1.jpg" alt="Lumi talking to suspicious fox" class="scene-img">
+  <div id="question1" class="question"></div>
+  <div class="option" onclick="goToScene('praise1')">Ask: “What’s Maple’s secret sign?”</div>
+  <div class="option" onclick="goToScene('trap1')">Say: “Okay! Let’s be friends!”</div>
+</div>
+
+
+    <div id="praise1" class="scene">
+      <div class="praise">🌟 Smart move! You’re checking for clues and staying safe.</div>
+       <img src="lumi-good.jpg" alt="good outcome" class="scene-img">
+      <button class="button" onclick="goToScene('scene2')">Next Challenge</button>
+    </div>
+
+    <div id="trap1" class="scene">
+      <div class="feedback">🚩 That could be a fake identity. Always verify someone’s claim before trusting them!</div>
+      <img src="lumi-bad.jpg" alt="bad outcome" class="scene-img">
+      <button class="button" onclick="goToScene('scene2')">Next Challenge</button>
+    </div>
+
+    <!-- Scene 2 -->
+    <div id="scene2" class="scene">
+      <div id="question2" class="question"></div>
+        <img src="lumi-owl.jpg" alt="owl" class="scene-img">
+      <div class="option" onclick="goToScene('trap2')">Click the link immediately</div>
+      <div class="option" onclick="goToScene('praise2')">Double-check the link with a trusted adult</div>
+    </div>
+
+    <div id="praise2" class="scene">
+      <div class="praise">✅ Great thinking! Always verify suspicious links.</div>
+       <img src="lumi-good.jpg" alt="good outcome" class="scene-img">
+      <button class="button" onclick="goToScene('scene3')">Final Challenge</button>
+    </div>
+
+    <div id="trap2" class="scene">
+      <div class="feedback">⚠️ That could have been a phishing site. Never click unknown links!</div>
+      <img src="lumi-bad.jpg" alt="bad outcome" class="scene-img">
+      <button class="button" onclick="goToScene('scene3')">Final Challenge</button>
+    </div>
+
+    <!-- Scene 3 -->
+    <div id="scene3" class="scene">
+      <div id="question3" class="question"></div>
+        <img src="lumi-horse.jpg" alt="horse" class="scene-img">
+      <div class="option" onclick="goToScene('trap3')">Send a photo to prove you’re real</div>
+      <div class="option" onclick="goToScene('praise3')">Say “No thanks, I don't share photos with strangers”</div>
+    </div>
+
+    <div id="praise3" class="scene">
+      <div class="praise">💖 Brave choice! You protected your privacy.</div>
+       <img src="lumi-good.jpg" alt="good outcome" class="scene-img">
+      <button class="button" onclick="goToScene('ending')">Finish</button>
+    </div>
+
+    <div id="trap3" class="scene">
+      <div class="feedback">📸 That could be image abuse. Never send photos to strangers online.</div>
+      <img src="lumi-bad.jpg" alt="bad outcome" class="scene-img">
+      <button class="button" onclick="goToScene('ending')">Finish</button>
+    </div>
+
+    <!-- Ending -->
+    <div id="ending" class="scene ending">
+      <img src="ending.jpg" alt="end" class="scene-img">
+      <h2>🎉 You completed Lumi’s Safe Chat Quest! 🎉</h2>
+      <p>You made smart, kind, and cautious choices through the Forest of the Internet. Always be careful who you trust online — and protect your sparkle!</p>
+      <button class="button visible" onclick="goToScene('intro')">Play Again</button>
+    </div>
+  </div>
+
+  <!-- JS -->
+  <script>
+    function typeText(elementId, text, speed = 40, optionSelector = null) {
+      const el = document.getElementById(elementId);
+      el.textContent = '';
+      let i = 0;
+
+      // Hide options first
+      if (optionSelector) {
+        document.querySelectorAll(optionSelector).forEach(opt => {
+          opt.classList.remove('visible');
+        });
+      }
+
+      const interval = setInterval(() => {
+        if (i < text.length) {
+          el.textContent += text.charAt(i);
+          i++;
+        } else {
+          clearInterval(interval);
+
+          // Show options after typing ends
+          if (optionSelector) {
+            document.querySelectorAll(optionSelector).forEach(opt => {
+              opt.classList.add('visible');
+            });
+          }
+        }
+      }, speed);
+    }
+
+    function goToScene(id) {
+      // Hide all scenes
+      document.querySelectorAll('.scene').forEach(scene => scene.classList.remove('active'));
+      const targetScene = document.getElementById(id);
+      targetScene.classList.add('active');
+
+      // Reset feedback visibility
+      document.querySelectorAll('.feedback, .praise, .button').forEach(el => el.classList.remove('visible'));
+
+      // Fade in feedback and praise
+      setTimeout(() => {
+        document.querySelectorAll(`#${id} .feedback, #${id} .praise, #${id} .button`).forEach(el => el.classList.add('visible'));
+      }, 100);
+
+      // Type questions & delay options
+      if (id === 'scene1') {
+        typeText('question1', "🦊 A user says: “Hey, I’m a friend of Maple the Owl. She said I should talk to you.”", 40, "#scene1 .option");
+      }
+      if (id === 'scene2') {
+        typeText('question2', "🦉 A mysterious owl sends you a link to a ‘cool new game’. It looks strange...", 40, "#scene2 .option");
+      }
+      if (id === 'scene3') {
+        typeText('question3', "🦄 Someone online says: “You’re pretty. Can you send me a photo?”", 40, "#scene3 .option");
+      }
+    }
+  </script>
+</body>
+</html>
